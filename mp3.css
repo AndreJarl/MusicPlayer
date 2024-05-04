@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+html{
+    font-family: Poppins;
+    background-color: #121212;
+    color: white;
+}
+.Sidemusic{
+   display: grid;
+   grid-template-rows: 1fr 1fr;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   height: 500px;
+   overflow-y: scroll;
+   
+}
+
+.musicContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15em;
+    margin: 1em;
+}
+.songtitle{
+    font-size: 40px;
+    text-align: center;
+    font-weight: 800;
+    color: #1db954;
+}
+.song{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  
+}
+
+.songImg img{
+      width: 80px;
+      padding-left: 1em;
+}
+
+.songArtist{
+    font-size: 12px;
+}
+
+.song:hover{
+    background-color: #535353;
+    color: white;
+}
+
+.songContainer{
+    width: 200px;
+    height: 100px;
+
+}
+
+.controlPanel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    font-size: xx-large;
+}
+
+.songContainer2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.musicPlayer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
