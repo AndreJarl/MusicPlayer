@@ -1,10 +1,10 @@
 let songs = [
     {
-        songName: "Waltz of Four Left Feet",
-        songArtist: "Shirebound and Busking",
-        cover: "waltz.png",
-        duration: "5:37",
-        src : "./music/waltz.mp3"
+        songName: "MILLION DOLLAR BABY",
+        songArtist: "Tommy Richman",
+        cover: "million.png",
+        duration: "2:35",
+        src : "./music/million.mp3"
     },
     {
         songName: "bad",
@@ -21,7 +21,7 @@ let songs = [
         src: "./music/intro.mp3"
     },
     {
-        songName: "ily",
+        songName: "ILY",
         songArtist: "YB Neet, Bugoy na Koykoy",
         cover: "ily.png",
         duration: "2:59",
@@ -50,36 +50,33 @@ let songs = [
     }
 ];
 
+// Define the order of song indices
+let songOrder = [0, 1, 2, 3, 4, 5, 6];
+
 let songContainer = document.querySelector(".songContainer");
 let songTitle = document.querySelector(".songTitle");
 let songArtist = document.querySelector(".songArtist");
 let duration = document.querySelector(".time");
 let songImg = document.querySelector(".songImg");
 
-
-
-function displaySongs(){
-for(let i=0;i<songs.length;i++){
-    
-     let song = songs[i];
-     console.log(songs[i].songName);
-     let songi = `
-     <div class="song">
-     <img class="songImg" src="${song.cover}" alt="" srcset="">
-     <div class="sss">
-     <div class="songTitleArtist">
-      
-       <p class="songTitle">${song.songName}</p>
-       <p class="songArtist">${song.songArtist}</p>
-       </div>
-       <div class="time">
-           <p>${song.duration}</p>
-       </div>
-       </div>
-     `;
-    songContainer.innerHTML += songi;
-}
-
+function displaySongs() {
+    songOrder.forEach(index => {
+        let song = songs[index];
+        let songi = `
+        <div class="song">
+            <img class="songImg" src="${song.cover}" alt="" srcset="">
+            <div class="sss">
+                <div class="songTitleArtist">
+                    <p class="songTitle">${song.songName}</p>
+                    <p class="songArtist">${song.songArtist}</p>
+                </div>
+                <div class="time">
+                    <p>${song.duration}</p>
+                </div>
+            </div>
+        </div>`;
+        songContainer.innerHTML += songi;
+    });
 }
 
 displaySongs();
@@ -90,46 +87,176 @@ let musicImg = document.querySelector(".musicPlayercontainer img");
 let songsElements = document.querySelectorAll(".song");
 let musicContainer = document.querySelector(".musicContainer");
 
-songsElements.forEach(function(songElement) {
-    songElement.addEventListener("click", function() {
-        let songIndex = Array.from(songsElements).indexOf(songElement);
-        let clickedSong = songs[songIndex];
+// Get the audio player
+let audioPlayer = document.getElementById("audioPlayer");
+let currentIndex = 0;
 
-        // Update music player with the clicked song details
-        musicTitle.textContent = clickedSong.songName;
-        musicArtist.textContent = clickedSong.songArtist;
-        musicImg.setAttribute("src", clickedSong.cover);
-        
-        //song starts playing if you click
-        let audioPlayer = document.getElementById("audioPlayer");
-        audioPlayer.src = clickedSong.src;
+
+// Listen for the "ended" event on the audio element
+audioPlayer.addEventListener("ended", function() {
+    // Increment the index for the next song
+    currentIndex = (currentIndex + 1) % songOrder.length;
+    playSong(currentIndex);
+});
+
+
+let track = document.querySelector(".track");
+let lastTime = document.querySelector(".last-time");
+let totalTime = document.querySelector(".total-time");
+let tracker = document.querySelector(".tracker");
+// Update total time of audio
+audioPlayer.addEventListener("loadedmetadata", function () {
+    let totalMinutes = Math.floor(audioPlayer.duration / 60);
+    let totalSeconds = Math.floor(audioPlayer.duration % 60);
+    totalTime.textContent = `${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`;
+    
+});
+
+// Seek functionality when the user interacts with the progress bar
+track.addEventListener("input", function () {
+    let seekTime = (audioPlayer.duration * track.value) / 100;
+    audioPlayer.currentTime = seekTime;
+});
+
+// Update last time of audio and track progress
+audioPlayer.addEventListener("timeupdate", function () {
+    let currentMinutes = Math.floor(audioPlayer.currentTime / 60);
+    let currentSeconds = Math.floor(audioPlayer.currentTime % 60);
+    lastTime.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
+
+    // Update progress bar value
+    let progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+    track.value = progress;
+    tracker.style.width = progress + "%"; // Set width based on progress
+});
+
+// When the user clicks on the progress bar, seek to that position
+track.addEventListener("click", function(event) {
+    let clickPosition = event.offsetX / track.offsetWidth;
+    audioPlayer.currentTime = clickPosition * audioPlayer.duration; 
+});
+
+
+
+function playSong(index) {
+    let clickedSong = songs[songOrder[index]];
+    
+    // Update music player with the clicked song details
+    musicTitle.textContent = clickedSong.songName;
+    musicArtist.textContent = clickedSong.songArtist;
+    musicImg.setAttribute("src", clickedSong.cover);
+     
+    let playBtn = document.getElementById("playBtn");
+    
+    // Set the source of the audio player to the next song and play it
+    audioPlayer.src = clickedSong.src;
+    if (audioPlayer.paused) {
         audioPlayer.play();
+        playBtn.classList.remove("fa-play");
+        playBtn.classList.add("fa-pause");
+    } else {
+        audioPlayer.pause();
+        playBtn.classList.remove("fa-pause");
+        playBtn.classList.add("fa-play");
+    }
 
-
-        if (clickedSong.songName === "bad") {
-            document.querySelector(".musicContainer").style.background = "radial-gradient(circle, rgba(123,130,136,1) 38%, rgba(155,163,164,1) 100%)";
-        } else if(clickedSong.songName === "intro(end of the world)" ){
-            document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(168,133,27,1) 0%, rgba(27,23,23,1) 97%)";
-        } else if(clickedSong.songName === "ily" ){
-            document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(215,196,196,1) 0%, rgba(190,122,122,1) 56%, rgba(167,52,52,1) 78%, rgba(0,0,0,1) 100%)";
-        } else if(clickedSong.songName === "See You Again" ){
-            document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(240,144,0,1) 0%, rgba(136,222,111,1) 100%)";
-        } else if(clickedSong.songName === "Don't" ){
-            document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(120,118,115,1) 12%, rgba(17,18,17,1) 100%)";
-        }  else if(clickedSong.songName === "Nakauwi Na" ){
-            document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(38,139,208,1) 30%, rgba(82,209,94,1) 100%)";
-        } 
-        
-        
-        
-        
-        
-        else {
-            // Reset background color if it's not the "bad" song
-            document.querySelector(".musicContainer").style.background = "radial-gradient(circle, rgba(238,234,174,1) 9%, rgba(66,62,15,1) 89%)";
-        }
-        
+    // Remove "playing" class from all songs
+    songsElements.forEach(function(song) {
+        song.classList.remove("playing");
     });
 
-   
+    // Add "playing" class to the next song
+    songsElements[index].classList.add("playing");
+
+    // Apply background color based on the next song
+    if (clickedSong.songName === "bad") {
+        document.querySelector(".musicContainer").style.background = "radial-gradient(circle, rgba(123,130,136,1) 38%, rgba(155,163,164,1) 100%)";
+    } else if(clickedSong.songName === "intro(end of the world)" ){
+        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(168,133,27,1) 0%, rgba(27,23,23,1) 97%)";
+    } else if(clickedSong.songName === "ILY" ){
+        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(215,196,196,1) 0%, rgba(190,122,122,1) 56%, rgba(167,52,52,1) 78%, rgba(0,0,0,1) 100%)";
+    } else if(clickedSong.songName === "See You Again" ){
+        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(240,144,0,1) 0%, rgba(136,222,111,1) 100%)";
+    } else if(clickedSong.songName === "Don't" ){
+        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(120,118,115,1) 12%, rgba(17,18,17,1) 100%)";
+    }  else if(clickedSong.songName === "Nakauwi Na" ){
+        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(38,139,208,1) 30%, rgba(82,209,94,1) 100%)";
+    } 
+    else {
+        // Reset background color if it's not the "bad" song
+        document.querySelector(".musicContainer").style.background = "radial-gradient(circle, rgba(212,211,211,1) 0%, rgba(132,131,131,1) 51%, rgba(13,13,13,1) 100%)";
+    }
+
+    
+
+    
+}
+ 
+
+let playBtn = document.querySelector(".fa-play");
+let backwardBtn = document.querySelector(".fa-backward");
+let forwardBtn = document.querySelector(".fa-forward");
+let currentTime = 0;
+
+
+
+
+songsElements.forEach(function(songElement) {
+    songElement.addEventListener("click", function() {
+        currentIndex = Array.from(songsElements).indexOf(songElement);
+        playSong(currentIndex);
+    });
+
+    function playSong(index) {
+        let clickedSong = songs[index];
+        audioPlayer.src = clickedSong.src;
+        audioPlayer.play();
+        currentTime && (audioPlayer.currentTime = currentTime); // Set current time if it's stored
+    }
+    
+
+
+    playBtn.addEventListener("click", function(){
+        if (audioPlayer.paused) {
+            playSong(currentIndex);
+            playBtn.classList.remove("fa-play");
+            playBtn.classList.add("fa-pause");
+        } else {
+            currentTime = audioPlayer.currentTime; // Store current time
+            audioPlayer.pause();
+            playBtn.classList.remove("fa-pause");
+            playBtn.classList.add("fa-play");
+        }
+    });
 });
+
+
+
+
+
+// Forward button event listener
+forwardBtn.addEventListener("click", function () {
+    // Increment the index for the next song
+    currentIndex = (currentIndex + 1) % songOrder.length;
+    playSong(currentIndex);
+});
+
+// Backward button event listener
+backwardBtn.addEventListener("click", function () {
+    // Decrement the index for the previous song
+    currentIndex = (currentIndex - 1 + songOrder.length) % songOrder.length;
+    playSong(currentIndex);
+});
+
+
+// Song elements event listeners
+songsElements.forEach(function(songElement) {
+    songElement.addEventListener("click", function() {
+        // Set current time to 0 when a song element is clicked
+        currentTime = 0;
+        currentIndex = Array.from(songsElements).indexOf(songElement);
+        playSong(currentIndex);
+    });
+});
+
+

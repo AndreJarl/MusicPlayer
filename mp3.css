@@ -14,33 +14,22 @@ body{
 
 
 .track {
-    padding-top: 28px;
+    margin-top: 1.8em;
    position: relative;
-  
+    height: 5px;
+    background-color: #b8b6b6;
+    cursor: pointer;
   }
   
-  .track::before {
-  content: '';
-  height: 6px;
-  width: 100%;
-  display: block;
-  background: #D9D9D9;
-  opacity: 0.3;
-  border-radius: 10px;
-  position: absolute;
-  }
-  
-  .track::after { 
-    content: '';
-  height: 6px;
-  width: 85%;
-  display: block;
-  background: #D9D9D9;
-  border-radius: 10px;
-  
-  
-  }
-  
+.tracker{
+    margin-top: -5px;
+    position: relative;
+     height: 5px;
+     background-color: white;
+     width: 0%;
+     cursor: pointer;
+}
+
   .time {
     opacity: 0.7;
     font-size: 14px;
@@ -57,7 +46,7 @@ body{
       grid-template-columns: 1fr 1fr;
       align-items: center;
       background: rgb(238,234,174);
-      background: radial-gradient(circle, rgba(238,234,174,1) 9%, rgba(66,62,15,1) 89%);
+      background: radial-gradient(circle, rgba(212,211,211,1) 0%, rgba(132,131,131,1) 51%, rgba(13,13,13,1) 100%);
       margin: 0;
       padding: 0;
   }
@@ -166,4 +155,8 @@ body{
  .song:hover{
     background-color: #535353;
     color: white;
+}
+
+i{
+    cursor: pointer;
 }
