@@ -183,7 +183,7 @@ function playSong(index) {
         document.body.style.background = " radial-gradient(circle, rgba(38,139,208,1) 30%, rgba(82,209,94,1) 100%)";
     } else {
         // Reset background color if it's not the "bad" song
-        document.body.style.background = "radial-gradient(circle, rgba(212,211,211,1) 0%, rgba(132,131,131,1) 51%, rgba(13,13,13,1) 100%)";
+        document.body.style.background = "radial-gradient(circle, rgba(173,168,168,1) 8%, rgba(43,42,42,1) 62%)";
     }
     
 

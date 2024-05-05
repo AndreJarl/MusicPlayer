@@ -7,7 +7,7 @@ body{
     color: white;
     margin: 0;
     padding: 0;
-    background:radial-gradient(circle, rgba(212,211,211,1) 0%, rgba(132,131,131,1) 51%, rgba(13,13,13,1) 100%) ;
+    background:radial-gradient(circle, rgba(173,168,168,1) 8%, rgba(43,42,42,1) 62%);
 }
 
 
@@ -167,7 +167,7 @@ i{
         grid-template-columns: 1fr 1fr;
         align-items: center;
         margin: 0;
-        padding-top: 1em;
+        padding-top: 2em;
         max-height: 90vh;
         
     }
@@ -197,4 +197,13 @@ i{
         height: 80vh;
         
     }
+
+    .song{
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        align-items: center;
+        cursor: pointer;
+        width: 470px;
+     }
 }
