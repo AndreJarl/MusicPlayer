@@ -7,7 +7,7 @@ body{
     color: white;
     margin: 0;
     padding: 0;
-    background: radial-gradient(circle, rgba(123,130,136,1) 38%, rgba(155,163,164,1) 100%) ;
+    background:radial-gradient(circle, rgba(212,211,211,1) 0%, rgba(132,131,131,1) 51%, rgba(13,13,13,1) 100%) ;
 }
 
 
@@ -43,18 +43,18 @@ body{
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      
+      padding-top: 2em;
       margin: 0;
-      padding: 0;
+      
       max-height: 100%;
   }
 
   .musicPlayer{
       display: flex;
       justify-content: center;
-      padding: 1.5em;
+      
       margin: 0;
-      padding-bottom: 3.3em;
+      
   }
  .musicPlayercontainer img{
      width: 280px;
