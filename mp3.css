@@ -167,7 +167,7 @@ i{
         grid-template-columns: 1fr 1fr;
         align-items: center;
         margin: 0;
-        padding-top: 2em;
+        padding-top: 1em;
         max-height: 90vh;
         
     }
@@ -175,7 +175,7 @@ i{
     .sss{
         display: flex;
         flex-direction: row;
-        gap: 4em;
+        gap: 6em;
         justify-content: center;
         align-content: center;
      }
