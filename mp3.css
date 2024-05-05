@@ -39,20 +39,22 @@ body{
   }
   
 
-  .musicContainer{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding-top: 2em;
-      margin: 0;
-      
-      max-height: 100%;
-  }
 
-  .musicPlayer{
+
+.musicContainer{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+   grid-template-rows: 1fr 1fr;
+}
+
+
+
+
+ .musicPlayer{
       display: flex;
       justify-content: center;
-      
+      align-items: center;
       margin: 0;
       
   }
@@ -69,7 +71,6 @@ body{
  .sss{
     display: flex;
     flex-direction: row;
-    gap: 4em;
     justify-content: center;
     align-content: center;
  }
@@ -103,8 +104,7 @@ body{
     justify-content: center;
     align-items: center;
     /* background-color: red; */
-    margin-left: -6em;
-    
+    margin-left: -5em;
  }
 
  .song img{
@@ -122,7 +122,7 @@ body{
      align-items: center;
      /* background-color: blue; */
      padding: 1em;
-     height: 80vh;
+     /* height: 80vh; */
      
  }
 
@@ -157,4 +157,44 @@ body{
 
 i{
     cursor: pointer;
+}
+
+
+@media only screen and (min-width: 800px) {
+
+    .musicContainer{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        margin: 0;
+        padding-top: 2em;
+        max-height: 90vh;
+        
+    }
+  
+    .sss{
+        display: flex;
+        flex-direction: row;
+        gap: 4em;
+        justify-content: center;
+        align-content: center;
+     }
+    
+     .Sidemusic{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: red; */
+        margin-left: -6em;
+     }
+    
+     .sidemusicContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: blue; */
+        /* padding: 1em; */
+        height: 80vh;
+        
+    }
 }
