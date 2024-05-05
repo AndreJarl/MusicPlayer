@@ -170,22 +170,22 @@ function playSong(index) {
 
     // Apply background color based on the next song
     if (clickedSong.songName === "bad") {
-        document.querySelector(".musicContainer").style.background = "radial-gradient(circle, rgba(123,130,136,1) 38%, rgba(155,163,164,1) 100%)";
-    } else if(clickedSong.songName === "intro(end of the world)" ){
-        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(168,133,27,1) 0%, rgba(27,23,23,1) 97%)";
-    } else if(clickedSong.songName === "ILY" ){
-        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(215,196,196,1) 0%, rgba(190,122,122,1) 56%, rgba(167,52,52,1) 78%, rgba(0,0,0,1) 100%)";
-    } else if(clickedSong.songName === "See You Again" ){
-        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(240,144,0,1) 0%, rgba(136,222,111,1) 100%)";
-    } else if(clickedSong.songName === "Don't" ){
-        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(120,118,115,1) 12%, rgba(17,18,17,1) 100%)";
-    }  else if(clickedSong.songName === "Nakauwi Na" ){
-        document.querySelector(".musicContainer").style.background = " radial-gradient(circle, rgba(38,139,208,1) 30%, rgba(82,209,94,1) 100%)";
-    } 
-    else {
+        document.body.style.background = "radial-gradient(circle, rgba(123,130,136,1) 38%, rgba(155,163,164,1) 100%)";
+    } else if (clickedSong.songName === "intro(end of the world)") {
+        document.body.style.background = " radial-gradient(circle, rgba(168,133,27,1) 0%, rgba(27,23,23,1) 97%)";
+    } else if (clickedSong.songName === "ILY") {
+        document.body.style.background = " radial-gradient(circle, rgba(215,196,196,1) 0%, rgba(190,122,122,1) 56%, rgba(167,52,52,1) 78%, rgba(0,0,0,1) 100%)";
+    } else if (clickedSong.songName === "See You Again") {
+        document.body.style.background = " radial-gradient(circle, rgba(240,144,0,1) 0%, rgba(136,222,111,1) 100%)";
+    } else if (clickedSong.songName === "Don't") {
+        document.body.style.background = " radial-gradient(circle, rgba(120,118,115,1) 12%, rgba(17,18,17,1) 100%)";
+    } else if (clickedSong.songName === "Nakauwi Na") {
+        document.body.style.background = " radial-gradient(circle, rgba(38,139,208,1) 30%, rgba(82,209,94,1) 100%)";
+    } else {
         // Reset background color if it's not the "bad" song
-        document.querySelector(".musicContainer").style.background = "radial-gradient(circle, rgba(212,211,211,1) 0%, rgba(132,131,131,1) 51%, rgba(13,13,13,1) 100%)";
+        document.body.style.background = "radial-gradient(circle, rgba(212,211,211,1) 0%, rgba(132,131,131,1) 51%, rgba(13,13,13,1) 100%)";
     }
+    
 
     
 
